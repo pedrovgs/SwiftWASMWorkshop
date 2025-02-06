@@ -16,7 +16,7 @@ debug("✅ Application ready!")
 
 
 func initializeTitle(_ document: JSObject) {
-    document.title = "Swift WASM Workshop"
+    document.title = "🐦‍🔥 Swift WASM Workshop 🐦‍🔥"
 }
 
 func initializeCSS(_ document: JSObject) {
