@@ -27,7 +27,8 @@ func initializeCSS(_ document: JSObject) {
 }
 
 func initializeApp(_ document: JSObject) {
-    let view = MeetingMeterJSKitView(document: document)
-    let presenter = MeetingMeterPresenter(view: view)
+    let presenter = MeetingMeterPresenter()
+    let view = MeetingMeterJSKitView(document: document, presenter: presenter)
+    presenter.view = view
     presenter.resume()
 }

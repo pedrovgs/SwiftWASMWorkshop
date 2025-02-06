@@ -1,13 +1,27 @@
 import Foundation
 
 public class MeetingMeterPresenter {
-    private let view: MeetingMeterView
+    public var view: MeetingMeterView?
     
-    public init(view: MeetingMeterView) {
-        self.view = view
-    }
+    public init() {}
     
     public func resume() {
-        view.initialize()
+        view?.initialize()
+    }
+    
+    public func didClickStartButton() {
+        print("===> click start button")
+    }
+    
+    public func didClickPauseButton() {
+        print("====> pause")
+    }
+    
+    public func didChangeCostValue(_ costValue: String) {
+        print("===> did change cost value \(costValue)")
+    }
+
+    public func didClickResetButton() {
+        print("===> reset")
     }
 }

@@ -5,9 +5,11 @@ import JavaScriptKit
 class MeetingMeterJSKitView: MeetingMeterView {
     
     private let document: JSObject
+    private let presenter: MeetingMeterPresenter
     
-    init(document: JSObject) {
+    init(document: JSObject, presenter: MeetingMeterPresenter) {
         self.document = document
+        self.presenter = presenter
     }
 
     func initialize() {
@@ -16,6 +18,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
         initStartButton()
         initAvgMeetingCostInput()
         initCostLabel()
+        initPauseButton()
         initResetButton()
     }
     
@@ -28,9 +31,29 @@ class MeetingMeterJSKitView: MeetingMeterView {
     
     private func initStartButton() {
         var button = self.document.createElement!("button");
-        button.textContent = "➡️ Start ⬅️";
+        button.textContent = " Start ⬅️";
         button.className = "button"
         button.disabled = "false"
+        let startClickListener = JSClosure { [weak self] _ in
+            guard let self else { return .undefined }
+            self.presenter.didClickStartButton()
+            return .undefined
+        }
+        _ = button.addEventListener("click", startClickListener)
+        _ = document.body.append(button)
+    }
+    
+    private func initPauseButton() {
+        var button = self.document.createElement!("button");
+        button.textContent = "⏸️ Pause ⏸️";
+        button.className = "button"
+        button.disabled = "false"
+        let pauseClickListener = JSClosure { [weak self] _ in
+            guard let self else { return .undefined }
+            self.presenter.didClickPauseButton()
+            return .undefined
+        }
+        _ = button.addEventListener("click", pauseClickListener)
         _ = document.body.append(button)
     }
     
@@ -41,7 +64,12 @@ class MeetingMeterJSKitView: MeetingMeterView {
         costInput.type = "number"
         costInput.min = "0"
         costInput.max = "500000"
-        costInput.pattern = "^\\$?\\d+(,\\d{3})*(\\.\\d{0,2})?$"
+        let costChangeListener = JSClosure { [weak self] args in
+            guard let event = args.first, let self else { return .undefined }
+            self.presenter.didChangeCostValue(event.target.value.string ?? "")
+            return .undefined
+        }
+        _ = costInput.addEventListener("input", costChangeListener)
         _ = document.body.append(costInput)
     }
 
@@ -56,6 +84,12 @@ class MeetingMeterJSKitView: MeetingMeterView {
         var button = self.document.createElement!("button");
         button.textContent = "🔁 Reset 🔁";
         button.className = "button"
+        let resetClickListener = JSClosure { [weak self] _ in
+            guard let self else { return .undefined }
+            self.presenter.didClickResetButton()
+            return .undefined
+        }
+        _ = button.addEventListener("click", resetClickListener)
         _ = document.body.append(button)
     }
 }
