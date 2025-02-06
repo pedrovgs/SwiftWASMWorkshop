@@ -36,7 +36,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
     
     private func initAvgMeetingCostInput() {
         var costInput = self.document.createElement!("input");
-        costInput.placeholder = "Annual cost per employee";
+        costInput.placeholder = "Annual cost per attendee in €";
         costInput.className = "input"
         costInput.type = "number"
         costInput.min = "0"
