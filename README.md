@@ -1,10 +1,10 @@
-# SwiftWASMWorkshop
+# <img alt="Buzz" src="https://external-preview.redd.it/OgF6xV-gjiPgLZzaXwnK7W7QTtDjcB3_rhJzT0dm0SM.jpg?auto=webp&s=c71ede2350559dafb18a3baf7afbc09ae1543602" height="80" width="80"/>  SwiftWASMWorkshop
 
-Swift WebAssembly workshop for Software Engineers!
+👋 Welcome to the Swift WebAssembly workshop for Software Engineers 👋
 
 ![MeetingMeter](./art/meetingMeter.gif)
 
-👋 If you just get to this repository is because you are interested in learning about Swift and WebAssemlby! If this is the case, please, checkout to the branch named ``practice`` and continue reading!
+If you just get to this repository is because you are interested in learning about Swift and WebAssemlby 🥳! If this is the case, please, checkout to the branch named ``practice`` and continue reading 💪
 
 ```git checkout practice``
 
@@ -12,6 +12,7 @@ This repository contains a list of exercises designed as an introduction to Swif
 
 * What's Web Assembly.
 * How can I use Web Assembly and Swift as a Software Engineer.
+* How can we use carton as our bundler and main tool.
 * What are the implications on the project architecture.
 * How can I create a web application using WebAssembly and Swift.
 * How to interop with JavaScript and the Browser from Swift.
