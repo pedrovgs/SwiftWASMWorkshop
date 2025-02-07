@@ -20,6 +20,7 @@ public class MeetingMeterPresenter {
         meetingMeter.start(annualCost: self.annualCost) { accumulatedCost in
             view.meetingCost(accumulatedCost)
         }
+        view.costInputEnabled(false)
         view.startButtonEnabled(false)
         view.stopButtonEnabled(true)
     }
@@ -27,6 +28,7 @@ public class MeetingMeterPresenter {
     public func didClickStopButton() {
         guard let view = view else { return }
         meetingMeter.stop()
+        view.costInputEnabled(true)
         view.stopButtonEnabled(false)
         view.startButtonEnabled(true)
     }
@@ -46,6 +48,7 @@ public class MeetingMeterPresenter {
 
     public func didClickResetButton() {
         guard let view else { return }
+        view.costInputEnabled(true)
         view.meetingCost(.zero)
         view.inputCostValue(.zero)
         view.startButtonEnabled(false)

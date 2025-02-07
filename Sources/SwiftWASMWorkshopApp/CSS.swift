@@ -16,6 +16,14 @@ body {
     text-align: center;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
 .button {
     outline: 0;
     color: #FFFFFF;
