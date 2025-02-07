@@ -7,6 +7,12 @@ class MeetingMeterJSKitView: MeetingMeterView {
     private let document: JSObject
     private let presenter: MeetingMeterPresenter
     
+    private var startButton: JSValue?
+    private var pauseButton: JSValue?
+    private var resetButton: JSValue?
+    private var costInput: JSValue?
+    private var infoLabel: JSValue?
+    
     init(document: JSObject, presenter: MeetingMeterPresenter) {
         self.document = document
         self.presenter = presenter
@@ -22,6 +28,20 @@ class MeetingMeterJSKitView: MeetingMeterView {
         initResetButton()
     }
     
+    func costValue(_ value: Double) {
+        if (value == .zero) {
+            costInput?.value = "".jsValue
+        } else {
+            costInput?.value = "\(value)".jsValue
+        }
+    }
+    func startButtonEnabled(_ enabled: Bool) {
+        
+    }
+    func pauseButtonEnabled(_ enabled: Bool) {
+        
+    }
+    
     private func initTitle() {
         var title = self.document.createElement!("h1")
         title.textContent = "⏱️ Meeting Meter ⏱️"
@@ -31,6 +51,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
     
     private func initStartButton() {
         var button = self.document.createElement!("button");
+        startButton = button
         button.textContent = " Start ⬅️";
         button.className = "button"
         button.disabled = "false"
@@ -45,6 +66,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
     
     private func initPauseButton() {
         var button = self.document.createElement!("button");
+        pauseButton = button
         button.textContent = "⏸️ Pause ⏸️";
         button.className = "button"
         button.disabled = "false"
@@ -58,30 +80,33 @@ class MeetingMeterJSKitView: MeetingMeterView {
     }
     
     private func initAvgMeetingCostInput() {
-        var costInput = self.document.createElement!("input");
-        costInput.placeholder = "Annual cost per attendee in €";
-        costInput.className = "input"
-        costInput.type = "number"
-        costInput.min = "0"
-        costInput.max = "500000"
+        var input = self.document.createElement!("input");
+        costInput = input
+        input.placeholder = "Annual cost per meeting in €";
+        input.className = "input"
+        input.type = "number"
+        input.min = "0"
+        input.max = "500000"
         let costChangeListener = JSClosure { [weak self] args in
             guard let event = args.first, let self else { return .undefined }
             self.presenter.didChangeCostValue(event.target.value.string ?? "")
             return .undefined
         }
-        _ = costInput.addEventListener("input", costChangeListener)
+        _ = input.addEventListener("input", costChangeListener)
         _ = document.body.append(costInput)
     }
 
     private func initCostLabel() {
-        var infoLabel = self.document.createElement!("h2");
-        infoLabel.textContent = "💵💵💵";
-        infoLabel.className = "subtitle"
+        var label = self.document.createElement!("h2");
+        infoLabel = label
+        label.textContent = "💵💵💵";
+        label.className = "subtitle"
         _ = document.body.append(infoLabel)
     }
     
     private func initResetButton() {
         var button = self.document.createElement!("button");
+        resetButton = button
         button.textContent = "🔁 Reset 🔁";
         button.className = "button"
         let resetClickListener = JSClosure { [weak self] _ in

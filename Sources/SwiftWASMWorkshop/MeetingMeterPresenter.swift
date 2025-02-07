@@ -22,6 +22,15 @@ public class MeetingMeterPresenter {
     }
 
     public func didClickResetButton() {
-        print("===> reset")
+        guard let view else { return }
+        view.costValue(0)
+        view.startButtonEnabled(false)
+        view.pauseButtonEnabled(false)
+        stopClock()
     }
+
+    private func stopClock() {
+        
+    }
+    
 }
