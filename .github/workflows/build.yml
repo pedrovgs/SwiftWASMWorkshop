@@ -1,0 +1,41 @@
+name: Run unit tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  test_on_wasm:
+    name: Build and Test on WebAssembly
+    runs-on: ubuntu-20.04
+    container:
+      image: swift:6.0.2-focal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: swift sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.2-RELEASE/swift-wasm-6.0.2-RELEASE-wasm32-unknown-wasi.artifactbundle.zip --checksum 6ffedb055cb9956395d9f435d03d53ebe9f6a8d45106b979d1b7f53358e1dcb4
+      - run: swift package --swift-sdk wasm32-unknown-wasi carton-test --environment node
+  test_on_native:
+    name: Build and Test on Native
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test
+  build:
+    name: Build and Upload artifact
+    runs-on: ubuntu-20.04
+    container:
+      image: swift:6.0.2-focal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: swift sdk install https://github.com/swiftwasm/swift/releases/download/swift-wasm-6.0.2-RELEASE/swift-wasm-6.0.2-RELEASE-wasm32-unknown-wasi.artifactbundle.zip --checksum 6ffedb055cb9956395d9f435d03d53ebe9f6a8d45106b979d1b7f53358e1dcb4
+      - name: Build
+        run: swift package --swift-sdk wasm32-unknown-wasi carton-bundle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: .build/plugins/CartonBundlePlugin/outputs/Bundle
