@@ -1,4 +1,4 @@
-# <img alt="Buzz" src="https://external-preview.redd.it/OgF6xV-gjiPgLZzaXwnK7W7QTtDjcB3_rhJzT0dm0SM.jpg?auto=webp&s=c71ede2350559dafb18a3baf7afbc09ae1543602" height="80" width="80"/>  SwiftWASMWorkshop
+# <img alt="Buzz" src="https://external-preview.redd.it/OgF6xV-gjiPgLZzaXwnK7W7QTtDjcB3_rhJzT0dm0SM.jpg?auto=webp&s=c71ede2350559dafb18a3baf7afbc09ae1543602" height="50" width="50"/>  SwiftWASMWorkshop
 
 👋 Welcome to the Swift WebAssembly workshop for Software Engineers 👋
 
@@ -6,7 +6,7 @@
 
 If you just get to this repository is because you are interested in learning about Swift and WebAssemlby 🥳! If this is the case, please, checkout to the branch named ``practice`` and continue reading 💪
 
-```git checkout practice``
+```git checkout practice```
 
 This repository contains a list of exercises designed as an introduction to Swift and WebAssembly you can follow step by step. The topics you'll cover during this workshop are:
 
@@ -19,6 +19,8 @@ This repository contains a list of exercises designed as an introduction to Swif
 * Tooling available and development alternatives for professional environments.
 
 ## Useful commands
+
+Open your terminal and get ready to code 💻
 
 ```
 swift run carton dev # Runs the app and starts hot reloading for localhost:8080
@@ -40,7 +42,7 @@ Developed By
   <img alt="Follow me on Twitter" src="https://image.freepik.com/iconos-gratis/x-logo_318-40209.jpg" height="60" width="60"/>
 </a>
 <a href="https://es.linkedin.com/in/pedrovgs">
-  <img alt="Add me to Linkedin" src="https://cdn-icons-png.flaticon.com/512/61/61109.png" height="60" width="60"/>
+  <img alt="Add me to Linkedin" src="https://img.icons8.com/m_rounded/512/FFFFFF/linkedin.png" height="60" width="60"/>
 </a>
 
 License
