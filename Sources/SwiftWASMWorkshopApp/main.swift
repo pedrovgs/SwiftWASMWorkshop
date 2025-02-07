@@ -21,7 +21,7 @@ private func initializeJSKit() {
 }
 
 private func initializeTitle(_ document: JSObject) {
-    document.title = "🐦‍🔥 Swift WASM Workshop 🐦‍🔥"
+    document.title = "⏱️ MeetingMeter ⏱️"
 }
 
 private func initializeCSS(_ document: JSObject) {
