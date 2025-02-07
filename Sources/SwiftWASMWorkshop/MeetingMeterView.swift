@@ -6,5 +6,5 @@ public protocol MeetingMeterView {
     func inputCostValue(_ value: Double)
     func meetingCost(_ value: Double)
     func startButtonEnabled(_ enabled: Bool)
-    func pauseButtonEnabled(_ enabled: Bool)
+    func stopButtonEnabled(_ enabled: Bool)
 }

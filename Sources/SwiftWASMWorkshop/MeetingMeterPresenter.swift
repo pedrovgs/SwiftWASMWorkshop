@@ -3,22 +3,45 @@ import Foundation
 public class MeetingMeterPresenter {
     public var view: MeetingMeterView?
     
-    public init() {}
+    private var annualCost: Double = .zero
+
+    private let meetingMeter: MeetingMeter
+    
+    public init(meetingMeter: MeetingMeter) {
+        self.meetingMeter = meetingMeter
+    }
     
     public func resume() {
         view?.initialize()
     }
     
     public func didClickStartButton() {
-        print("===> click start button")
+        guard let view = view else { return }
+        meetingMeter.start(annualCost: self.annualCost) { accumulatedCost in
+            view.meetingCost(accumulatedCost)
+        }
+        view.startButtonEnabled(false)
+        view.stopButtonEnabled(true)
     }
     
-    public func didClickPauseButton() {
-        print("====> pause")
+    public func didClickStopButton() {
+        guard let view = view else { return }
+        meetingMeter.stop()
+        view.stopButtonEnabled(false)
+        view.startButtonEnabled(true)
     }
     
     public func didChangeCostValue(_ costValue: String) {
-        print("===> did change cost value \(costValue)")
+        guard let view = view else { return }
+        let cost: Double = Double(costValue) ?? 0.0
+        if (cost == .zero) {
+            view.startButtonEnabled(false)
+            view.stopButtonEnabled(false)
+            annualCost = .zero
+        } else {
+            annualCost = cost
+            view.startButtonEnabled(true)
+        }
     }
 
     public func didClickResetButton() {
@@ -26,12 +49,8 @@ public class MeetingMeterPresenter {
         view.meetingCost(.zero)
         view.inputCostValue(.zero)
         view.startButtonEnabled(false)
-        view.pauseButtonEnabled(false)
-        stopClock()
-    }
-
-    private func stopClock() {
-        
+        view.stopButtonEnabled(false)
+        meetingMeter.stop()
     }
     
 }

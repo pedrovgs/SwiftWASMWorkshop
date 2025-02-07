@@ -8,7 +8,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
     private let presenter: MeetingMeterPresenter
     
     private var startButton: JSValue?
-    private var pauseButton: JSValue?
+    private var stopButton: JSValue?
     private var resetButton: JSValue?
     private var costInput: JSValue?
     private var infoLabel: JSValue?
@@ -19,17 +19,18 @@ class MeetingMeterJSKitView: MeetingMeterView {
     }
 
     func initialize() {
-        debug("Initializing MeetingMeterJSKitView")
         initTitle()
-        initStartButton()
         initCostLabel()
         initAvgMeetingCostInput()
-        initPauseButton()
+        initStartButton()
+        initStopButton()
         initResetButton()
+        debug("MeetingMeterJSKitView ready!")
     }
     
     func meetingCost(_ value: Double) {
         if (value == .zero) {
+            debug("Meeting cost value reset")
             infoLabel?.textContent = "💵💵💵"
         } else {
             let currencyFormatter = NumberFormatter()
@@ -39,6 +40,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
                 infoLabel?.textContent = "💵💵💵"
                 return
             }
+            debug("Meeting cost value udpated: \(formattedValue)")
             let beautifiedValue = "💵💵💵 \(formattedValue) 💵💵💵"
             infoLabel?.textContent = beautifiedValue.jsValue
         }
@@ -52,10 +54,10 @@ class MeetingMeterJSKitView: MeetingMeterView {
         }
     }
     func startButtonEnabled(_ enabled: Bool) {
-        
+        startButton?.disabled = (!enabled).jsValue
     }
-    func pauseButtonEnabled(_ enabled: Bool) {
-        
+    func stopButtonEnabled(_ enabled: Bool) {
+        stopButton?.disabled = (!enabled).jsValue
     }
     
     private func initTitle() {
@@ -73,6 +75,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
         button.disabled = "false"
         let startClickListener = JSClosure { [weak self] _ in
             guard let self else { return .undefined }
+            debug("➡️ Start button clicked")
             self.presenter.didClickStartButton()
             return .undefined
         }
@@ -80,18 +83,19 @@ class MeetingMeterJSKitView: MeetingMeterView {
         _ = document.body.append(button)
     }
     
-    private func initPauseButton() {
+    private func initStopButton() {
         var button = self.document.createElement!("button");
-        pauseButton = button
-        button.textContent = "⏸️ Pause ⏸️";
+        stopButton = button
+        button.textContent = "⏸️ Stop ⏸️";
         button.className = "button"
         button.disabled = "false"
-        let pauseClickListener = JSClosure { [weak self] _ in
+        let stopClickListener = JSClosure { [weak self] _ in
             guard let self else { return .undefined }
-            self.presenter.didClickPauseButton()
+            debug("⏸️ Stop button clicked")
+            self.presenter.didClickStopButton()
             return .undefined
         }
-        _ = button.addEventListener("click", pauseClickListener)
+        _ = button.addEventListener("click", stopClickListener)
         _ = document.body.append(button)
     }
     
@@ -127,6 +131,7 @@ class MeetingMeterJSKitView: MeetingMeterView {
         button.className = "button"
         let resetClickListener = JSClosure { [weak self] _ in
             guard let self else { return .undefined }
+            debug("🔁 Reset button clicked")
             self.presenter.didClickResetButton()
             return .undefined
         }

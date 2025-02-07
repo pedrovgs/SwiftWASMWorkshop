@@ -12,7 +12,11 @@ let package = Package(
         .package(url: "https://github.com/swiftwasm/JavaScriptKit", from: "0.22.2"),
     ],
     targets: [
-        .executableTarget(name: "SwiftWASMWorkshopApp", dependencies: ["JavaScriptKit", "SwiftWASMWorkshop"]),
+        .executableTarget(name: "SwiftWASMWorkshopApp", dependencies: [
+            "JavaScriptKit",
+            .product(name: "JavaScriptEventLoop", package: "JavaScriptKit"),
+            "SwiftWASMWorkshop"
+        ]),
         .target(name: "SwiftWASMWorkshop", dependencies: []),
         .testTarget(name: "SwiftWASMWorkshopTests")
     ]
