@@ -42,6 +42,7 @@ button:disabled{
 
 .subtitle {
     color: #FFFFFF;
+    font-size: 2em;
 }
 
 .input {

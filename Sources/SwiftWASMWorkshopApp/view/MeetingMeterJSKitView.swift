@@ -22,13 +22,29 @@ class MeetingMeterJSKitView: MeetingMeterView {
         debug("Initializing MeetingMeterJSKitView")
         initTitle()
         initStartButton()
-        initAvgMeetingCostInput()
         initCostLabel()
+        initAvgMeetingCostInput()
         initPauseButton()
         initResetButton()
     }
     
-    func costValue(_ value: Double) {
+    func meetingCost(_ value: Double) {
+        if (value == .zero) {
+            infoLabel?.textContent = "💵💵💵"
+        } else {
+            let currencyFormatter = NumberFormatter()
+            currencyFormatter.numberStyle = .currency
+            currencyFormatter.locale = Locale(identifier: "es_ES")
+            guard let formattedValue = currencyFormatter.string(from: value as NSNumber) else {
+                infoLabel?.textContent = "💵💵💵"
+                return
+            }
+            let beautifiedValue = "💵💵💵 \(formattedValue) 💵💵💵"
+            infoLabel?.textContent = beautifiedValue.jsValue
+        }
+    }
+    
+    func inputCostValue(_ value: Double) {
         if (value == .zero) {
             costInput?.value = "".jsValue
         } else {
