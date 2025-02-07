@@ -39,7 +39,7 @@ Developed By
 * Pedro Vicente Gómez Sánchez - <pedrovicente.gomez@gmail.com>
 
 <a href="https://twitter.com/pedro_g_s">
-  <img alt="Follow me on Twitter" src="https://image.freepik.com/iconos-gratis/x-logo_318-40209.jpg" height="60" width="60"/>
+  <img alt="Follow me on Twitter" src="https://www.citypng.com/public/uploads/preview/hd-white-twitter-bird-logo-icon-png-701751694781835zcpqy8so3y.png" height="60" width="60"/>
 </a>
 <a href="https://es.linkedin.com/in/pedrovgs">
   <img alt="Add me to Linkedin" src="https://img.icons8.com/m_rounded/512/FFFFFF/linkedin.png" height="60" width="60"/>
