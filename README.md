@@ -4,7 +4,7 @@
 
 ![MeetingMeter](./art/meetingMeter.gif)
 
-If you just get to this repository is because you are interested in learning about Swift and WebAssemlby 🥳! If this is the case, please, checkout to the branch named ``practice`` and continue reading 💪
+If you just get to this repository is because you are interested in learning about Swift and WebAssembly 🥳! If this is the case, please, checkout to the branch named ``practice`` and continue reading 💪
 
 ```git checkout practice```
 
