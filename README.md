@@ -24,8 +24,8 @@ Open your terminal and get ready to code 💻
 
 ```
 swift run carton dev # Runs the app and starts hot reloading for localhost:8080
-swift run carton test #Runs XCTest suite in the full JavaScript/DOM environment
-swift run carton bundle #Optimizing and packaging the app for distribution with
+swift run carton test # Runs XCTest suite in the full JavaScript/DOM environment
+swift run carton bundle # Optimizing and packaging the app for distribution
 swift test # Executes all the package tests
 ```
 
